@@ -40,7 +40,7 @@ def count(str_):
 if __name__ == '__main__':
     start = time()
     os.chdir(sys.path[0]+'/../test')
-    with open(feature.file_name, 'r') as file:
+    with open(feature.file_name, 'r', encoding='utf-8') as file:
         text = file.read()
     count(text)
     print(char_dict)
