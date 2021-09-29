@@ -44,4 +44,4 @@ if __name__ == '__main__':
         text = file.read()
     count(text)
     print(char_dict)
-    print(f'Time elapsed = {time()-start}')
+    print(f'Time elapsed = {(time()-start):.6f} second(s)')
