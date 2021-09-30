@@ -34,7 +34,7 @@ char_dict = {
 
 def count(str_):
     for char in str_:
-        if char in char_dict or char.lower() in char_dict:
+        if char.lower() in char_dict:
             char_dict[char.lower()] += 1
 
 if __name__ == '__main__':
