@@ -2,6 +2,7 @@ import os
 import sys
 import feature
 from time import time 
+import matplotlib.pyplot as plt
 
 char_dict = {
     'a': 0,
@@ -37,6 +38,11 @@ def count(str_):
         if char.lower() in char_dict:
             char_dict[char.lower()] += 1
 
+def hist_plot():
+    fig, ax = plt.subplots(1,1)
+    ax.hist(char_dict, len(char_dict))
+    plt.show()
+
 if __name__ == '__main__':
     start = time()
     os.chdir(sys.path[0]+'/../test')
@@ -45,3 +51,4 @@ if __name__ == '__main__':
     count(text)
     print(char_dict)
     print(f'Time elapsed = {(time()-start):.6f} second(s)')
+    #hist_plot()
