@@ -41,12 +41,13 @@ def count(str_):
 
 def hist_plot():
     if feature.plot_type is not None:
+        _, ax = plt.subplots(1,1)
         if feature.plot_type == 'alphabetic':
-            _, ax = plt.subplots(1,1)
             ax.bar(char_dict.keys(), char_dict.values())
-            plt.show()
         if feature.plot_type == 'decreasing':
-            pass
+            char_dict_sorted = {k: v for k, v in sorted(char_dict.items(), key=lambda item: item[1], reverse=True)}
+            ax.bar(char_dict_sorted.keys(), char_dict_sorted.values())
+        plt.show()
     return
 
 if __name__ == '__main__':
