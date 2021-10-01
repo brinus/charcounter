@@ -37,11 +37,17 @@ def count(str_):
     for char in str_:
         if char.lower() in char_dict:
             char_dict[char.lower()] += 1
+    return
 
 def hist_plot():
-    fig, ax = plt.subplots(1,1)
-    ax.bar(char_dict.keys(), char_dict.values())
-    plt.show()
+    if feature.plot_type is not None:
+        if feature.plot_type == 'alphabetic':
+            _, ax = plt.subplots(1,1)
+            ax.bar(char_dict.keys(), char_dict.values())
+            plt.show()
+        if feature.plot_type == 'decreasing':
+            pass
+    return
 
 if __name__ == '__main__':
     start = time()
