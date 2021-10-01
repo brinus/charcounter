@@ -40,7 +40,7 @@ def count(str_):
 
 def hist_plot():
     fig, ax = plt.subplots(1,1)
-    ax.hist(char_dict, len(char_dict))
+    ax.bar(char_dict.keys(), char_dict.values())
     plt.show()
 
 if __name__ == '__main__':
@@ -51,4 +51,4 @@ if __name__ == '__main__':
     count(text)
     print(char_dict)
     print(f'Time elapsed = {(time()-start):.6f} second(s)')
-    #hist_plot()
+    hist_plot()
