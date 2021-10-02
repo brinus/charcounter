@@ -59,6 +59,21 @@ def count():
     print(f'Time elapsed = {(time()-start):.6f} second(s)')
     print(char_dict)
     return
+    
+def count_with_stats(str_):
+    n_words=0
+    n_characters_no_spaces=0
+    n_characters=0
+    n_letters=0
+    '''Function for doing stats on texts, it returns the number of characters, number of words, number of letters'''
+    for char in text:
+        n_characters+=1
+        if char!='\n':
+            n_characters_no_spaces+=1
+        if char.lower() in char_dict:
+            n_letters+=1
+    print('Stats of the text:\n')
+    print(f'Number of characters with spaces: {n_characters}\nNumber of characters without spaces: {n_characters_no_spaces}\nNumber of letters: {n_letters}\n')
 
 def hist_plot():
     if feature.plot_type is not None:
@@ -73,5 +88,14 @@ def hist_plot():
 
 if __name__ == '__main__':
     start = time()
+    os.chdir(sys.path[0]+'/../test')
+    with open(feature.file_name, 'r', encoding='utf-8') as file:
+        text = file.read()
     count()
+    if feature.stats:
+        count_with_stats(text)
+        print(f'Time elapsed = {(time()-start):.6f} second(s)')
+    else:
+        print(f'Time elapsed = {(time()-start):.6f} second(s)')
+    
     hist_plot()
