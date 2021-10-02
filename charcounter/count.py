@@ -6,6 +6,7 @@ import sys
 import feature
 from time import time 
 import logging
+import matplotlib.pyplot as plt
 
 char_dict = {
     'a': 0,
@@ -59,6 +60,18 @@ def count():
     print(char_dict)
     return
 
+def hist_plot():
+    if feature.plot_type is not None:
+        _, ax = plt.subplots(1,1)
+        if feature.plot_type == 'alphabetic':
+            ax.bar(char_dict.keys(), char_dict.values())
+        if feature.plot_type == 'decreasing':
+            char_dict_sorted = {k: v for k, v in sorted(char_dict.items(), key=lambda item: item[1], reverse=True)}
+            ax.bar(char_dict_sorted.keys(), char_dict_sorted.values())
+        plt.show()
+    return
+
 if __name__ == '__main__':
     start = time()
     count()
+    hist_plot()
