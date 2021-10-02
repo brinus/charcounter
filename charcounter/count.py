@@ -1,11 +1,7 @@
-''' This module is the main file, providing the function count().
-'''
-
 import os
 import sys
 import feature
-from time import time 
-import logging
+from time import time
 
 char_dict = {
     'a': 0,
@@ -36,25 +32,10 @@ char_dict = {
     'z': 0
 }
 
-def count():
-    ''' Function that given a file in input, counts the numer
-    '''
-    os.chdir(sys.path[0]+'/../test')
-    ''' Placing the working directory in ~/charcounter/test/ so that files are  \
-        organized in a different directory to mantain the project as clean as   \
-        possible.
-    '''
-    try:
-        with open(feature.file_name, 'r', encoding='utf-8') as file:
-            text = file.read()    
-    except IOError:
-        logging.error('File not found, check file name or absolute path if provided')
-        return  
-    
-    for char in text:
+def count(str_):
+    for char in str_:
         if char.lower() in char_dict:
             char_dict[char.lower()] += 1
-
             
 
 def count_with_stats(str_):
@@ -85,14 +66,3 @@ if __name__ == '__main__':
         print(f'Time elapsed = {(time()-start):.6f} second(s)')
     else:
         print(f'Time elapsed = {(time()-start):.6f} second(s)')
-
-
-    
-    print(f'Time elapsed = {(time()-start):.6f} second(s)')
-    print(char_dict)
-    return
-
-if __name__ == '__main__':
-    start = time()
-    count()
-
