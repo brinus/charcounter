@@ -1,7 +1,11 @@
+''' This module is the main file, providing the function count().
+'''
+
 import os
 import sys
 import feature
-from time import time
+from time import time 
+import logging
 
 char_dict = {
     'a': 0,
@@ -32,37 +36,29 @@ char_dict = {
     'z': 0
 }
 
-def count(str_):
-    for char in str_:
+def count():
+    ''' Function that given a file in input, counts the numer
+    '''
+    os.chdir(sys.path[0]+'/../test')
+    ''' Placing the working directory in ~/charcounter/test/ so that files are  \
+        organized in a different directory to mantain the project as clean as   \
+        possible.
+    '''
+    try:
+        with open(feature.file_name, 'r', encoding='utf-8') as file:
+            text = file.read()    
+    except IOError:
+        logging.error('File not found, check file name or absolute path if provided')
+        return  
+    
+    for char in text:
         if char.lower() in char_dict:
             char_dict[char.lower()] += 1
-            
-
-def count_with_stats(str_):
-    n_words=0
-    n_characters_no_spaces=0
-    n_characters=0
-    n_letters=0
-    '''Function for doing stats on texts, it returns the number of characters, number of words, number of letters'''
-    for char in text:
-        n_characters+=1
-        if char!='\n':
-            n_characters_no_spaces+=1
-        if char.lower() in char_dict:
-            n_letters+=1
-    print('Stats of the text:\n')
-    print(f'Number of characters with spaces: {n_characters}\nNumber of characters without spaces: {n_characters_no_spaces}\nNumber of letters: {n_letters}\n')
-
+    
+    print(f'Time elapsed = {(time()-start):.6f} second(s)')
+    print(char_dict)
+    return
 
 if __name__ == '__main__':
     start = time()
-    os.chdir(sys.path[0]+'/../test')
-    with open(feature.file_name, 'r', encoding='utf-8') as file:
-        text = file.read()
-    count(text)
-    print(f'\nNumber of occurrencies of each letter:\n{char_dict}\n')
-    if feature.stats:
-        count_with_stats(text)
-        print(f'Time elapsed = {(time()-start):.6f} second(s)')
-    else:
-        print(f'Time elapsed = {(time()-start):.6f} second(s)')
+    count()
