@@ -15,7 +15,7 @@ parser.add_argument('-p', '--plothist', nargs='?', default=None,
 	he histogram bar must be ordered in values-decreasing order or alphabetic-ke\
 	ys order. If nothing is passed to -p/--plothist, the default choice is alpha\
 	betic ordering.', metavar=('ORDERING'))
-parser.add_argument("-s","--stats",help='Prints on terminal the stats of the book',action="store_true")
+parser.add_argument("-s","--stats",help='Prints on terminal the stats of the text',action="store_true")
 
 args = parser.parse_args()
 file_name = args.file_name
